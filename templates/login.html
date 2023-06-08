@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" type="text/css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" type="text/css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" type="text/css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hover.css/2.3.1/css/hover-min.css" 
+        integrity="sha512-csw0Ma4oXCAgd/d4nTcpoEoz4nYvvnk21a8VA2h2dzhPAvjbUIK6V3si7/g/HehwdunqqW18RwCJKpD7rL67Xg==" crossorigin="anonymous" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" type="text/css">
+    <title>Sign In - HR Portal</title>
+</head>
+<body style="background-color: rgb(207, 230, 228);">
+
+    <!-- Flash message -->
+    <section class="container">
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                <div class="row message">
+                    <h5 class="white-text mx-auto flash-text">
+                        {{ message }}
+                    </h5>
+                    <a class="close white-text" id="closeButton">
+                        X
+                    </a>
+                </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </section>
+    <!-- Flash message ends -->
+    
+   <div class="container">
+        <div class="row login-card">
+            <div class="card column mx-auto">
+                <h5 class="btn-unique white-text text-center py-4">
+                    <i class="fas fa-key login-key"></i>
+                    <strong>Sign in to HR Portal</strong>
+                </h5>
+                <div class="card-body"> 
+                    <form method="POST" action="{{ url_for('login') }}">
+                        <div class="md-form md-outline">
+                            <i class="fas fa-envelope prefix" style="color: gray;"></i>
+                            <input type="text" name="email" id="email" class="form-control" required>
+                            <label for="email">E-mail address</label>
+                        </div>
+                        
+                        <div class="md-form md-outline">
+                            <i class="fas fa-user-lock prefix" style="color: gray"></i>
+                            <input type="password" name="password" id="password" minilenght="3" 
+                                maxlength="15" pattern="^[a-zA-Z0-9]{3,15}$" class="form-control" required>
+                            <label for="password">Password</label>
+                        </div>
+
+                        <div class="form-group row text-center" style="padding-top: 40px;">
+                            <div class="col">
+                                <button type="submit"
+                                    class="btn btn-block white-text text-center btn-mdb-color login-label text-capitalize" >
+                                    Login <i class="fas fa-sign-in-alt"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+
+                    <div class="row inner-links" style="padding-top: 120px;">
+                        <div class="col text-left">
+                            <div class="col login">
+                                <i class="fas fa-home"></i>
+                                <a href="{{ url_for('home') }}">
+                                    <span style="color: black;">Go to Home Page</span>
+                                </a> 
+                            </div>
+                        </div>
+                        <div class="col text-right">
+                            <div class="col">
+                                <p class="black-text login">
+                                    New Employee?
+                                    <a href="{{ url_for('register') }}" class="blue-text">
+                                        <strong>Register</strong>
+                                    </a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div> 
+            </div>
+        </div>
+    </div>
+
+    
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" 
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js"></script>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

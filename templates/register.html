@@ -1,0 +1,125 @@
+{% extends "base.html" %}
+{% block content %}
+
+    <!-- page header -->
+    <div class="h2-responsive text-center font-weight-bolder card-header"> 
+        Register 
+    </div>
+
+    <!-- Flash message -->
+    <section class="container">
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="row message">
+                        <h5 class="white-text mx-auto flash-text">
+                          {{ message }}
+                        </h5>
+                        <a class="close white-text" id="closeButton">
+                            X
+                        </a>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </section>
+    <!-- Flash message ends -->
+
+    <!-- Registration form -->
+    <div class="container" style="margin-bottom: 900px;">
+        <div class="row">
+            <div class="col">
+                <div class="card reg-card column mx-auto">
+                    <div class="card-body"> 
+                        <form method="POST" action="{{ url_for('register') }}">
+                            <div class="md-form">
+                                <i class="fas fa-user-plus prefix" style="color: gray;"></i>
+                                <input type="text" name="full_name" id="full_name" class="form-control" 
+                                    minlength="5" maxlength="25" pattern="^[a-zA-Z ]{5,25}$" required>
+                                <label for="full_name">Full Name</label>
+                            </div>
+                            
+                            <div class="md-form">
+                                <i class="fas fa-envelope prefix" style="color: gray;"></i>
+                                <input type="text" name="email" id="email" class="form-control" 
+                                    minlength="5" maxlength="50" required>
+                                <label for="email">E-mail</label>
+                            </div>
+    
+                            <div class="md-form">
+                                <i class="fas fa-user-lock prefix" style="color: gray;"></i>
+                                <input type="password" name="password" id="password" minilenght="3" 
+                                    maxlength="15" pattern="^[a-zA-Z0-9]{3,15}$" class="form-control" required>
+                                <label for="password">Create password</label>
+                            </div>
+                                
+                            <div class="md-form">
+                                <i class="fas fa-user-lock prefix" style="color: gray;"></i>
+                                <input type="password" name="confirm_password" id="confirm_password" 
+                                    minilenght="3" maxlength="15" pattern="^[a-zA-Z0-9]{3,15}$" class="form-control" required>
+                                <label for="confirm_password">Confirm password</label>
+                            </div>
+    
+                            <div class="form-group row text-center login-label">
+                                <div class="col">
+                                    <button type="submit" 
+                                        class="btn btn-block white-text text-center text-capitalize btn-mdb-color">
+                                            Register <i class="fas fa-sign-in-alt"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div> 
+                </div>
+            </div>
+        </div>
+        <!-- Registration form ends -->
+        
+        <!-- Bottom links -->
+        <div class="row card-bottom">
+            <div class="col">
+                <p class="text-center">
+                    Already Registered?
+                    <a href="{{ url_for('login') }}" class="blue-text">
+                        <strong>Log In</strong>
+                    </a>
+                </p>
+            </div>
+        </div>
+        <!-- Bottom links end -->
+    </div>
+
+    <!-- footer for inner pages -->
+    <div class="container-fluid footer" style="margin-top: 200px;">
+        <div class="row">
+            <div class="col-md-6">
+                <h6 class="copyright-in black-text text-center left-col">
+                    @ 2021 All rights reserved
+                </h6>
+            </div>
+
+            <div class="col-md-6">
+                <ul class="text-center right-col">
+                    <li class="footer-inner" style="padding-right: 10px; display: inline;">
+                        <a class="black-text" href="{{ url_for('privacy_policy') }}">
+                            Privacy Policy
+                        </a>
+                    </li>
+        
+                    <li class="footer-inner" style="padding-right: 10px; display: inline;">
+                        <a class="black-text" href="{{ url_for('terms_of_use') }}">
+                           Terms of Use
+                        </a>
+                    </li>
+                    <li class="footer-inner" style="padding-right: 25px; display: inline;">
+                        <a class="black-text" href="{{ url_for('help_desk') }}">
+                           Help
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- footer for inner pages end -->
+
+{% endblock %}
